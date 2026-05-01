@@ -1,0 +1,10 @@
+{
+  "policy_version": "1.0",
+  "allowed_categories": ["generative_text", "code_assistant", "analytical_assistant"],
+  "restricted_data": ["confidential"],
+  "escalation_thresholds": {
+    "prohibited_tool_used": true,
+    "high_risk_confidential": true,
+    "normalized_practice_detected": true
+  }
+}
