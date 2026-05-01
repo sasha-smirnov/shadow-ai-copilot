@@ -1,0 +1,32 @@
+{
+  "api.openai.com": {
+    "name": "ChatGPT API",
+    "category": "generative_text",
+    "status": "under_review"
+  },
+  "chat.openai.com": {
+    "name": "ChatGPT Web",
+    "category": "generative_text",
+    "status": "under_review"
+  },
+  "copilot.github.com": {
+    "name": "GitHub Copilot",
+    "category": "code_assistant",
+    "status": "approved"
+  },
+  "midjourney.com": {
+    "name": "Midjourney",
+    "category": "image_generation",
+    "status": "prohibited"
+  },
+  "notebooklm.google.com": {
+    "name": "Google NotebookLM",
+    "category": "analytical_assistant",
+    "status": "approved"
+  },
+  "claude.ai": {
+    "name": "Anthropic Claude",
+    "category": "generative_text",
+    "status": "unknown"
+  }
+}
