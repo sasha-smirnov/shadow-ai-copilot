@@ -9,6 +9,19 @@ from pathlib import Path
 from src.orchestration.pipeline import build_pipeline
 
 st.set_page_config(page_title="Shadow AI Copilot | Expert Review", layout="wide")
+
+
+EXPERT_MAP = {
+    "Эксперт 1 (InfoSec)": "E1",
+    "Эксперт 2 (IT Governance)": "E2",
+    "Эксперт 3 (Compliance)": "E3",
+    "Эксперт 4 (Аудит/DSR Reviewer)": "E4"
+}
+expert_name = st.sidebar.selectbox("👤 Идентификатор эксперта", list(EXPERT_MAP.keys()), index=0)
+EXPERT_ID = EXPERT_MAP[expert_name]
+
+
+
 st.title("🛡️ Expert Walkthrough Panel (EQ2/EQ3)")
 st.caption("Design Science Research Artifact v1.0 | Ground-Truth vs Prototype Comparison")
 
@@ -39,7 +52,9 @@ with col1:
 with col2:
     st.success(f"**🤖 Prototype Output**\n- Risk Level: `{case_card.risk_level.value}`\n- Confidence: `{case_card.confidence:.2f}`\n- Tool Detected: `{case_card.detected_tool or 'Unknown'}`\n- Data Sensitivity: `{case_card.data_sensitivity.value}`")
 
-st.markdown(f"**🎯 Ground Truth Label:**\n> {current['ground_truth_label']}")
+show_gt = st.checkbox("🔓 Показать Ground Truth (только для дебрифинга)", value=False)
+if show_gt:
+    st.markdown(f"**🎯 Ground Truth Label:**\n> {current['ground_truth_label']}")
 st.markdown(f"**💡 AI-Generated Rationale:**\n> {case_card.rationale}")
 
 # 2. Форма экспертной оценки
@@ -53,6 +68,7 @@ with st.form("expert_eval"):
     if submit:
         rec = {
             "case_id": current["case_id"],
+            "expert_id": EXPERT_ID,  
             "ground_truth_risk": current["expected_risk_level"],
             "prototype_risk": case_card.risk_level.value,
             "expert_risk_1to5": expert_risk,
