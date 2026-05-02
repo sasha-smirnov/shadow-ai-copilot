@@ -53,9 +53,7 @@ with col2:
     st.success(f"**🤖 Prototype Output**\n- Risk Level: `{case_card.risk_level.value}`\n- Confidence: `{case_card.confidence:.2f}`\n- Tool Detected: `{case_card.detected_tool or 'Unknown'}`\n- Data Sensitivity: `{case_card.data_sensitivity.value}`")
 
 show_gt = st.checkbox("🔓 Показать Ground Truth (только для дебрифинга)", value=False)
-if show_gt:
-    st.markdown(f"**🎯 Ground Truth Label:**\n> {current['ground_truth_label']}")
-st.markdown(f"**💡 AI-Generated Rationale:**\n> {case_card.rationale}")
+st.markdown(f"**🎯 Ground Truth Label:**\n> {current['ground_truth_label']}")
 
 # 2. Форма экспертной оценки
 with st.form("expert_eval"):
